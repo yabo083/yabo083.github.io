@@ -101,6 +101,7 @@ theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
+## 懂了，因为这里的设置，所以远程的github才能保持两个分支而不合并，因为我们的目的是要保持源码分支和编译后分支共同存在的
 deploy:
   type: git
   repository: git@github.com:yabo083/yabo083.github.io.git
