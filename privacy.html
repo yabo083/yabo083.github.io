@@ -1,70 +1,79 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Loupe · 评鉴 — 隐私政策 / Privacy Policy</title>
+<title>Loupe — Privacy Policy</title>
+<meta name="description" content="Loupe collects nothing. This policy states exactly what the extension processes, where data goes, and how to delete it.">
 <style>
   :root { color-scheme: light dark; }
   body { font: 16px/1.75 -apple-system, "Segoe UI", "Noto Sans SC", sans-serif; max-width: 46rem; margin: 3rem auto; padding: 0 1.25rem; }
-  h1 { font-size: 1.6rem; margin-bottom: .25rem; }
-  h2 { font-size: 1.1rem; margin-top: 2rem; }
-  time, .meta { color: #6b7280; font-size: .9rem; }
+  h1 { font-size: 1.7rem; margin-bottom: .25rem; }
+  h2 { font-size: 1.12rem; margin-top: 2rem; }
+  .meta { color: #6b7280; font-size: .9rem; }
   ul { padding-left: 1.2rem; } li { margin: .35rem 0; }
   code { background: rgba(127,127,127,.15); padding: .1rem .3rem; border-radius: 3px; font-size: .92em; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size: .95rem; }
+  th, td { border: 1px solid rgba(127,127,127,.3); padding: .45rem .6rem; text-align: left; vertical-align: top; }
   hr { border: 0; border-top: 1px solid rgba(127,127,127,.25); margin: 2rem 0; }
 </style>
 </head>
 <body>
-<h1>Loupe · 评鉴 隐私政策 / Privacy Policy</h1>
-<p class="meta">生效日期：2026-10-11（2026-10-30 修订）｜ 适用：Loupe · 评鉴 扩展（Chrome / Edge / Chromium）与本网站的 OAuth 客户端</p>
+<h1>Loupe — Privacy Policy</h1>
+<p class="meta">Effective 2026-10-11, revised 2026-10-30. Applies to the “Loupe” Chrome extension and to this website (home page of the developer's Chrome Web Store API client).</p>
 
-<p>Loupe · 评鉴（以下简称「本扩展」）是一个运行在你浏览器本地的评论区分析工具。本政策说明本扩展处理哪些数据、数据流向哪里、以及你的控制权。</p>
+<p>Loupe is a browser extension that analyses the public comment section of Bilibili (bilibili.com) videos on the user's own machine. This policy states, item by item, what data the extension touches, where that data goes, and how the user stays in control.</p>
 
-<h2>一、本扩展不收集、不上传、不出售你的数据</h2>
+<h2>1. Summary</h2>
+<table>
+  <tr><th>Question</th><th>Answer</th></tr>
+  <tr><td>Does Loupe collect personal data?</td><td><strong>No.</strong> No accounts, no analytics, no advertising, no tracking pixels, no crash reporting.</td></tr>
+  <tr><td>Does Loupe run a backend?</td><td><strong>No.</strong> There is no Loupe server. All fetching, parsing and visualisation happen inside the user's browser.</td></tr>
+  <tr><td>Does Loupe sell or share data?</td><td><strong>No.</strong> Nothing is sold, rented, or shared with third parties.</td></tr>
+  <tr><td>Does this website set cookies?</td><td><strong>No.</strong> It is a static page with no scripts, no cookies and no third-party resources.</td></tr>
+  <tr><td>What leaves the browser?</td><td>Only what the user explicitly requests: a comment excerpt sent to an AI endpoint the user configured. Nothing else.</td></tr>
+</table>
+
+<h2>2. Data the extension processes</h2>
 <ul>
-  <li>本扩展<strong>没有自己的服务器</strong>。所有抓取、建树、统计与可视化都在你的浏览器内完成。</li>
-  <li>本扩展<strong>不收集</strong>任何个人信息，<strong>不出售或共享</strong>数据给第三方，<strong>不做任何用户行为分析或广告用途</strong>。</li>
-  <li>本扩展没有账号体系，不需要登录本扩展，也不要求你提供姓名、邮箱或任何身份信息。</li>
+  <li><strong>Public comments.</strong> When the user starts an analysis, the extension reads the public comment section of the current video through the user's existing Bilibili session: comment text, author display name and level, timestamps, like counts, emoticons and images. This data is processed locally and cached in the browser's IndexedDB. It does not leave the device unless the user performs the AI step described in section 3.</li>
+  <li><strong>Local settings.</strong> Preferences (theme, crawl limits, AI endpoint and key) are stored in <code>chrome.storage.local</code> on the user's machine.</li>
+  <li><strong>Write actions initiated by the user.</strong> When the user likes a comment, replies, or posts a comment, the extension calls Bilibili's own endpoints from the Bilibili page context, using the session the browser already holds and the page's CSRF token (<code>bili_jct</code>). The token is read at the moment of the request and used only in that request body: it is never stored, never sent to the extension, never logged, and never written to caches or snapshots. These actions are exactly what the user would otherwise do on the Bilibili website.</li>
 </ul>
 
-<h2>二、本扩展处理的数据</h2>
+<h2>3. When data leaves the browser</h2>
 <ul>
-  <li><strong>公开评论内容</strong>：在你主动触发分析时，本扩展使用你当前浏览器的登录态从哔哩哔哩（bilibili.com）读取评论区数据，包括评论正文、作者昵称与等级、时间、点赞数、表情与图片。<strong>这些数据仅在你本地处理并缓存于本机浏览器</strong>，不会离开你的设备，除非你执行下述「AI 解读」操作。</li>
-  <li><strong>本机缓存与设置</strong>：抓取结果缓存在本机 IndexedDB，偏好设置保存在 <code>chrome.storage.local</code>；关闭浏览器不会使它们离开你的设备。</li>
-  <li><strong>你主动发起的写操作</strong>：当你点击点赞、回复或发表评论时，本扩展在哔哩哔哩页面上下文内，使用你当前会话的登录态与 CSRF 令牌（<code>bili_jct</code>）调用哔哩哔哩官方接口。<strong>该令牌只在这一次请求体内即时使用，不保存、不跨页面传递、不进入日志、快照或缓存键</strong>。写操作与你直接在 B 站网页上点赞、发评使用同一套身份与接口。</li>
+  <li>The extension calls <strong>no external service by default</strong>.</li>
+  <li>Only if the user enables “AI analysis” and clicks it does the extension send a size-limited excerpt of comments to <strong>an OpenAI-compatible endpoint the user enters themselves</strong> (base URL and model are user-provided).</li>
+  <li>The developer operates no endpoint, does not proxy these requests, and never receives the excerpt. The user is responsible for reviewing the privacy terms of the endpoint they choose.</li>
+  <li>The API key the user enters is stored locally in <code>chrome.storage.local</code> and is not included in snapshots or sent to the developer.</li>
 </ul>
 
-<h2>三、数据流向（唯一例外：AI 解读）</h2>
+<h2>4. Page access and permissions</h2>
 <ul>
-  <li>本扩展<strong>默认不调用任何外部服务</strong>。仅当你<strong>明确开启并点击</strong>「AI 解读 / 诊断」时，才会把经过预算限制的<strong>评论摘录</strong>发送到你<strong>自己配置的 OpenAI 兼容端点</strong>（Base URL 与模型由你填写）。</li>
-  <li>该端点由你自备，本扩展不提供默认端点、不经手或中转请求。发送前请确认你选择的端点及其服务方的数据处理条款。</li>
-  <li>你配置的 API Key 保存在本机 <code>chrome.storage.local</code>，不进入历史快照，也不会上传到本扩展作者或任何第三方。</li>
+  <li>The extension runs on Bilibili video pages so it can read the public comment section and, if the user switches the feature on, display a replacement comment area.</li>
+  <li>It reads nothing unrelated to comments: no passwords, no mailbox, no direct messages, no browsing history.</li>
+  <li>If the extension is reloaded or updated, it stops and asks the user to refresh the page.</li>
 </ul>
 
-<h2>四、本扩展如何读取哔哩哔哩页面</h2>
+<h2>5. Retention and deletion</h2>
 <ul>
-  <li>为呈现「替换评论区」功能，本扩展会在你开启开关后隐藏原生评论区节点并挂载自绘评论区。本扩展<strong>仅读取公开评论数据</strong>，不读取你的密码、邮箱、私信或任何与评论分析无关的账号信息。</li>
-  <li>扩展被重载或更新后，本扩展会停止并向你提示刷新页面以恢复。</li>
+  <li>Cached comments and settings stay on the user's device: they can be removed per snapshot in the extension's “History” panel, by closing/clearing the extension's storage, or by uninstalling the extension (everything is removed with it).</li>
+  <li>Nothing is retained anywhere else, because nothing is transmitted elsewhere.</li>
 </ul>
 
-<h2>五、本网站的 OAuth 客户端</h2>
+<h2>6. The OAuth client used for publishing</h2>
 <ul>
-  <li>本网站是 Loupe 发布流程所用 <strong>Google OAuth 客户端</strong>的首页。该客户端只有一个权限范围：<code>https://www.googleapis.com/auth/chromewebstore</code>。</li>
-  <li>它只被开发者本人用于通过 Chrome Web Store API <strong>上传与发布 Loupe 扩展的新版本</strong>；不读取任何终端用户的 Google 账号数据，也不能访问开发者自己条目之外的任何内容。</li>
-  <li>其 refresh token 保存在开发者本机 <code>.env</code> 文件中，不进版本库、不上传、不共享。本网站本身不设置 Cookie、不接入统计或广告脚本。</li>
+  <li>This website is the home page of a Google OAuth client used by the developer to publish Loupe updates through the official Chrome Web Store API.</li>
+  <li>That client requests a single scope, <code>https://www.googleapis.com/auth/chromewebstore</code>. It is used only from the developer's own computer to upload and publish the developer's own store item.</li>
+  <li>It does not access any end user's Google account, and it is not part of the extension.</li>
+  <li>Its refresh token is stored in a local <code>.env</code> file on the developer's machine, never in a repository, and never shared.</li>
 </ul>
 
-<h2>六、你的控制权</h2>
-<ul>
-  <li><strong>随时撤销</strong>：在扩展图标的设置面板里关闭开关，或在 <code>chrome://extensions</code> 中卸载本扩展，即可停止全部行为；历史与缓存会随卸载从本机移除。</li>
-  <li><strong>清除数据</strong>：在工作台「历史」中删除快照，即可清除本机保存的评论数据。</li>
-</ul>
-
-<h2>七、变更</h2>
-<p>本政策更新时，会在本页面修订生效日期。重大变更会通过扩展更新说明提示。</p>
+<h2>7. Changes</h2>
+<p>Material changes to this policy will be reflected in the “revised” date above and noted in the extension's release notes.</p>
 
 <hr>
-<p class="meta">联系 / Contact：<a href="mailto:sz7372797@gmail.com">sz7372797@gmail.com</a></p>
+<p class="meta">Contact: <a href="mailto:sz7372797@gmail.com">sz7372797@gmail.com</a> · See also the <a href="./terms.html">terms of service</a>.</p>
 </body>
 </html>

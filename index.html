@@ -3,45 +3,51 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Loupe — comment-tree analysis for Bilibili (Chrome extension)</title>
+<title>Loupe — Chrome extension for Bilibili comment analysis</title>
+<meta name="description" content="Loupe is a Chrome extension that analyses the comment section of Bilibili videos and visualises reply trees. No account, no server, no data collection.">
 <style>
   :root { color-scheme: light dark; }
   body { font: 16px/1.75 -apple-system, "Segoe UI", "Noto Sans SC", sans-serif; max-width: 46rem; margin: 3rem auto; padding: 0 1.25rem; }
-  h1 { font-size: 1.9rem; margin-bottom: .2rem; }
+  h1 { font-size: 2rem; margin-bottom: .2rem; }
   h2 { font-size: 1.15rem; margin-top: 2.2rem; }
   .meta { color: #6b7280; font-size: .92rem; }
   ul { padding-left: 1.2rem; } li { margin: .35rem 0; }
   code { background: rgba(127,127,127,.15); padding: .1rem .3rem; border-radius: 3px; font-size: .92em; }
   a { color: #0b6bcb; }
+  .box { border: 1px solid rgba(127,127,127,.3); border-radius: 8px; padding: .8rem 1rem; margin: 1.2rem 0; }
 </style>
 </head>
 <body>
 <h1>Loupe</h1>
-<p class="meta">Comment-tree analysis for Bilibili — a Chrome extension. 中文名：Loupe · 评鉴。</p>
+<p class="meta">A Chrome extension for Bilibili comment analysis.</p>
 
-<h2>What Loupe is</h2>
-<p>Loupe is a browser extension for <strong>Bilibili</strong> (bilibili.com) that reads the public comment section of a video, rebuilds the reply trees, and visualises who replied to whom. It also exports reports and, only when you explicitly enable it, can send a budget-limited comment excerpt to an AI endpoint <em>that you configure yourself</em>.</p>
+<div class="box">
+  <p><strong>This page is the home page of the application “Loupe”.</strong> No account is needed and there is nothing to log in to — everything on this page is public and readable by anyone.</p>
+</div>
+
+<h2>What Loupe does</h2>
+<p>Loupe reads the public comment section of a <strong>Bilibili</strong> (bilibili.com) video, rebuilds the reply trees (who replied to whom), and visualises them as an interactive graph. It can also produce a text report of a comment section, and — only when the user explicitly turns it on — send a size-limited excerpt of the comments to an AI endpoint <em>that the user configures themselves</em>.</p>
 <ul>
-  <li>Reads public comments only — no passwords, no e-mail, no private messages.</li>
-  <li>Runs entirely in your browser. Loupe has <strong>no server</strong>: there is no account, no sign-in, and nothing to log into.</li>
-  <li>All data stays on your machine (IndexedDB + <code>chrome.storage.local</code>).</li>
+  <li>Purpose: make long comment sections readable — thread structure, participants, reply depth.</li>
+  <li>Reads public comments only. No passwords, no e-mail, no private messages.</li>
+  <li>Runs entirely in the browser. Loupe has <strong>no server and no account system</strong>.</li>
+  <li>All fetched data stays on the user's machine (IndexedDB and <code>chrome.storage.local</code>).</li>
 </ul>
 
-<h2>Chrome extension</h2>
-<p>The published extension is <strong>Loupe · 评鉴</strong> on the Chrome Web Store. Everything on this page can be read without logging in; the extension itself needs no account either — it uses the Bilibili session your browser already has, exactly like visiting the site.</p>
+<h2>How it is distributed</h2>
+<p>Loupe is published on the Chrome Web Store as a Chrome extension. To upload new versions, the developer uses Google's Chrome Web Store API with an OAuth client that has exactly one scope: <code>https://www.googleapis.com/auth/chromewebstore</code>. That client is used only from the developer's own computer, cannot read any end user's Google account, and cannot touch anything except the developer's own store item (upload + publish). Its refresh token is kept in a local file on that computer.</p>
 
-<h2>Why this site is the homepage of an OAuth client</h2>
-<p>Loupe's release tooling uses a Google OAuth client with the single scope <code>https://www.googleapis.com/auth/chromewebstore</code> to upload new versions of the extension to the Chrome Web Store through the official API. That client is used only by the developer's own machine:</p>
+<h2>What Loupe does not do</h2>
 <ul>
-  <li>It does <strong>not</strong> access any end user's Google account or data.</li>
-  <li>It cannot read or write anything except the developer's own Chrome Web Store item (upload + publish).</li>
-  <li>The refresh token lives in a local <code>.env</code> file on the developer's computer.</li>
+  <li>It does not collect, sell, or share personal data.</li>
+  <li>It does not use Google APIs to access user data.</li>
+  <li>It does not generate images of any kind, and has nothing to do with AI-generated intimate imagery.</li>
 </ul>
 
 <h2>Privacy and terms</h2>
 <ul>
-  <li><a href="./privacy.html">Privacy policy</a> — what the extension processes, and the one case where data leaves your browser (your own AI endpoint).</li>
-  <li><a href="./terms.html">Terms of service</a> — licence, your responsibilities, warranty disclaimer.</li>
+  <li><a href="./privacy.html">Privacy policy</a> — exactly what is processed, what leaves the browser (only the user's own AI endpoint), and how to delete everything.</li>
+  <li><a href="./terms.html">Terms of service</a> — licence, user responsibilities, warranty disclaimer, Google API terms.</li>
 </ul>
 
 <h2>Contact</h2>
