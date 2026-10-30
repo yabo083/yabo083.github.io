@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loupe — comment-tree analysis for Bilibili (Chrome extension)</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 16px/1.75 -apple-system, "Segoe UI", "Noto Sans SC", sans-serif; max-width: 46rem; margin: 3rem auto; padding: 0 1.25rem; }
+  h1 { font-size: 1.9rem; margin-bottom: .2rem; }
+  h2 { font-size: 1.15rem; margin-top: 2.2rem; }
+  .meta { color: #6b7280; font-size: .92rem; }
+  ul { padding-left: 1.2rem; } li { margin: .35rem 0; }
+  code { background: rgba(127,127,127,.15); padding: .1rem .3rem; border-radius: 3px; font-size: .92em; }
+  a { color: #0b6bcb; }
+</style>
+</head>
+<body>
+<h1>Loupe</h1>
+<p class="meta">Comment-tree analysis for Bilibili — a Chrome extension. 中文名：Loupe · 评鉴。</p>
+
+<h2>What Loupe is</h2>
+<p>Loupe is a browser extension for <strong>Bilibili</strong> (bilibili.com) that reads the public comment section of a video, rebuilds the reply trees, and visualises who replied to whom. It also exports reports and, only when you explicitly enable it, can send a budget-limited comment excerpt to an AI endpoint <em>that you configure yourself</em>.</p>
+<ul>
+  <li>Reads public comments only — no passwords, no e-mail, no private messages.</li>
+  <li>Runs entirely in your browser. Loupe has <strong>no server</strong>: there is no account, no sign-in, and nothing to log into.</li>
+  <li>All data stays on your machine (IndexedDB + <code>chrome.storage.local</code>).</li>
+</ul>
+
+<h2>Chrome extension</h2>
+<p>The published extension is <strong>Loupe · 评鉴</strong> on the Chrome Web Store. Everything on this page can be read without logging in; the extension itself needs no account either — it uses the Bilibili session your browser already has, exactly like visiting the site.</p>
+
+<h2>Why this site is the homepage of an OAuth client</h2>
+<p>Loupe's release tooling uses a Google OAuth client with the single scope <code>https://www.googleapis.com/auth/chromewebstore</code> to upload new versions of the extension to the Chrome Web Store through the official API. That client is used only by the developer's own machine:</p>
+<ul>
+  <li>It does <strong>not</strong> access any end user's Google account or data.</li>
+  <li>It cannot read or write anything except the developer's own Chrome Web Store item (upload + publish).</li>
+  <li>The refresh token lives in a local <code>.env</code> file on the developer's computer.</li>
+</ul>
+
+<h2>Privacy and terms</h2>
+<ul>
+  <li><a href="./privacy.html">Privacy policy</a> — what the extension processes, and the one case where data leaves your browser (your own AI endpoint).</li>
+  <li><a href="./terms.html">Terms of service</a> — licence, your responsibilities, warranty disclaimer.</li>
+</ul>
+
+<h2>Contact</h2>
+<p>Developer: yabo083 — <a href="mailto:sz7372797@gmail.com">sz7372797@gmail.com</a></p>
+</body>
+</html>
